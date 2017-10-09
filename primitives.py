@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from typing import List
+from typing import Tuple
 import itertools
 import enum
 import math
@@ -8,9 +8,8 @@ import math
 import numpy
 
 
-class Point(list):
-    def __init__(self, pos: List[int]):
-        super(Point, self).__init__(pos)
+class Point(tuple):
+    def __init__(self, *args, **kwargs):
         assert(len(self) == 2 or len(self) == 3)
 
     def __sub__(self, p: "Point"):
@@ -36,9 +35,10 @@ class GridBox:
 
 
 class Unit:
-    def __init__(self, gridbox: GridBox, grid: "Grid"):
+    def __init__(self, grid: "Grid", point: Point):
         self.grid = grid
-        self.gridbox = gridbox
+        self.pos = point
+        self.gridbox = self.grid[self.pos]
 
     def adjacent(self):
         '''

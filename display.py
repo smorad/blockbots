@@ -10,8 +10,12 @@ class Display:
         self.grid = grid
 
         self.fig = plt.figure()
-        self.fig.add_subplot(111, projection='3d')
+        self.ax = self.fig.add_subplot(111, projection='3d')
 
     def draw(self):
-        pass
-        #for point, obj in self.grid()
+        gridboxes = self.grid.values()
+        occupants = [g.occupant for g in gridboxes]
+        print(occupants)
+        #print([o.pos if o else None for o in occupants])
+        self.ax.scatter(xs, ys, zs)
+        plt.show()
